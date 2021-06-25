@@ -17,12 +17,11 @@ import { AppCtx } from "../Components";
 export default function Test() {
   const { currTest, setCurrTest, allTests, setAllTests, setCurrView } =
     useContext(AppCtx);
+  const [curr, setCurr] = useState(1);
   if (!currTest) {
     setCurrView("menu");
     return <p>Bye</p>;
   }
-
-  const [curr, setCurr] = useState(1);
 
   const handleSubmit = (value: Types.Test) => {
     allTests.push(value);

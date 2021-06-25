@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
-import Axios from "axios";
-import { Formik, Form } from "formik";
 import {
-  Typography,
   Button,
+  FormControl,
   Grid,
   InputLabel,
   Select,
-  FormControl,
-} from "@material-ui/core";
-import He from "he";
+  Typography,
+} from '@material-ui/core';
+import Axios from 'axios';
+import { Form, Formik } from 'formik';
+import He from 'he';
+import React, { useContext } from 'react';
 
-import { QuestionResp } from "../types";
-import { AppCtx, useStyles } from "../Components";
+import { AppCtx, useStyles } from '../Components';
+import { QuestionResp } from '../types';
 
 export default function Menu() {
   const { setCurrView, setCurrTest } = useContext(AppCtx);
@@ -23,7 +23,7 @@ export default function Menu() {
       .then((e) => {
         const body: QuestionResp = e.data;
         if (body.results.length == 0) {
-          throw new Error("no questions?");
+          throw new Error('no questions?');
         }
 
         //remove html scaping
@@ -37,14 +37,14 @@ export default function Menu() {
               all_answers: t.map((e) => He.decode(e)),
               correct_answer: He.decode(e.correct_answer),
               question: He.decode(e.question),
-              answer: "",
+              answer: '',
             };
           }),
           startDate: new Date(),
         });
-        setCurrView("test");
+        setCurrView('test');
       })
-      .catch(() => alert("failed to fetch questions"));
+      .catch(() => alert('failed to fetch questions'));
   };
 
   return (
@@ -52,13 +52,12 @@ export default function Menu() {
       <Grid item container direction="column" alignItems="center" spacing={2}>
         <Typography variant="h2">New Test</Typography>
         <Typography variant="body1">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-          lacinia, ante sed mattis blandit, eros lorem pulvinar ante, in
-          sagittis leo mi quis urna. Sed nec tristique dui. Aliquam pharetra
-          lacinia odio in malesuada. Mauris eget risus finibus tortor efficitur
-          pharetra. In risus lacus, tempus quis ullamcorper sit amet, commodo eu
-          enim. Vivamus dapibus volutpat vehicula. Phasellus facilisis dignissim
-          lectus, sit amet lacinia nibh fermentum eu. Nulla non scelerisque
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia, ante sed
+          mattis blandit, eros lorem pulvinar ante, in sagittis leo mi quis urna. Sed nec
+          tristique dui. Aliquam pharetra lacinia odio in malesuada. Mauris eget risus
+          finibus tortor efficitur pharetra. In risus lacus, tempus quis ullamcorper sit
+          amet, commodo eu enim. Vivamus dapibus volutpat vehicula. Phasellus facilisis
+          dignissim lectus, sit amet lacinia nibh fermentum eu. Nulla non scelerisque
           augue. Proin gravida nec arcu a elementum.
         </Typography>
       </Grid>
@@ -73,8 +72,7 @@ export default function Menu() {
                   native
                   required
                   value={values.ammount}
-                  onChange={(e) => setFieldValue("ammount", e.target.value)}
-                >
+                  onChange={(e) => setFieldValue('ammount', e.target.value)}>
                   <option value="" />
                   {[5, 10, 15, 30, 60].map((e) => (
                     <option value={e} key={e}>
@@ -88,9 +86,8 @@ export default function Menu() {
                   </Button>
                   <Button
                     onClick={() => {
-                      setCurrView("overView");
-                    }}
-                  >
+                      setCurrView('overView');
+                    }}>
                     Cancel
                   </Button>
                 </Grid>

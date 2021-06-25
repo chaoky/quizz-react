@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Test } from "./types";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
+import React, { useState } from 'react';
 
-type View = "menu" | "test" | "overView";
+import { Test } from './types';
+
+type View = 'menu' | 'test' | 'overView';
 export interface AppCtx {
   allTests: Test[];
   setAllTests: (payload: Test[]) => void;
@@ -16,10 +17,10 @@ export const AppCtx = React.createContext({} as AppCtx);
 
 export function useLocalStorage<T>(
   key: string,
-  initialValue: T
+  initialValue: T,
 ): [T, (payload: T) => void] {
   const [state, setState] = useState(
-    (): T => JSON.parse(localStorage.getItem(key)!) || initialValue
+    (): T => JSON.parse(localStorage.getItem(key)!) || initialValue,
   );
 
   const setter = (payload: T) => {
@@ -35,23 +36,23 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
   },
   form: {
-    minWidth: "20vw",
+    minWidth: '20vw',
     margin: theme.spacing(1),
   },
   fixed: {
-    position: "fixed",
-    bottom: "5vh",
-    right: "10vw",
+    position: 'fixed',
+    bottom: '5vh',
+    right: '10vw',
   },
   divider: {
     margin: theme.spacing(0, 1),
   },
   card: {
-    maxWidth: "30em",
+    maxWidth: '30em',
   },
   fixedColumns: {
-    display: "grid",
-    gridTemplateColumns: "minmax(0, 3fr) minmax(0, 1fr)  minmax(0, 3fr)",
-    wordBreak: "break-all",
+    display: 'grid',
+    gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 1fr)  minmax(0, 3fr)',
+    wordBreak: 'break-all',
   },
 }));

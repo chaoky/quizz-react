@@ -1,17 +1,17 @@
-import React from "react";
-import { Container, Typography, CssBaseline } from "@material-ui/core";
+import { Container, CssBaseline } from '@material-ui/core';
+import React from 'react';
 
-import OverView from "./Pages/OverView";
-import TestPage from "./Pages/Test";
-import Menu from "./Pages/Menu";
-import { AppCtx, useLocalStorage, useStyles } from "./Components";
-import { Test } from "./types";
+import { AppCtx, useLocalStorage, useStyles } from './Components';
+import Menu from './Pages/Menu';
+import OverView from './Pages/OverView';
+import TestPage from './Pages/Test';
+import { Test } from './types';
 
 export default function App() {
   const css = useStyles();
-  const [currView, setCurrView] = useLocalStorage("currView", "overView");
-  const [allTests, setAllTests] = useLocalStorage("allTests", [] as Test[]);
-  const [currTest, setCurrTest] = useLocalStorage("currTest", null);
+  const [currView, setCurrView] = useLocalStorage('currView', 'overView');
+  const [allTests, setAllTests] = useLocalStorage('allTests', [] as Test[]);
+  const [currTest, setCurrTest] = useLocalStorage('currTest', null);
 
   const defaultAppCtx = {
     allTests,
@@ -28,9 +28,9 @@ export default function App() {
       <Container component="main" maxWidth="md">
         <CssBaseline />
         <div className={css.paper}>
-          {currView == "overView" && <OverView />}
-          {currView == "menu" && <Menu />}
-          {currView == "test" && <TestPage />}
+          {currView == 'overView' && <OverView />}
+          {currView == 'menu' && <Menu />}
+          {currView == 'test' && <TestPage />}
         </div>
       </Container>
     </AppCtx.Provider>

@@ -1,32 +1,32 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Formik, Form, useField } from "formik";
-import { Pagination } from "@material-ui/lab";
 import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  Grid,
   Radio,
   RadioGroup,
-  FormControlLabel,
-  FormControl,
-  Button,
   Typography,
-  Grid,
-} from "@material-ui/core";
+} from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
+import { Form, Formik, useField } from 'formik';
+import React, { useContext, useEffect, useState } from 'react';
 
-import * as Types from "../types";
-import { AppCtx } from "../Components";
+import { AppCtx } from '../Components';
+import * as Types from '../types';
 
 export default function Test() {
   const { currTest, setCurrTest, allTests, setAllTests, setCurrView } =
     useContext(AppCtx);
   const [curr, setCurr] = useState(1);
   if (!currTest) {
-    setCurrView("menu");
+    setCurrView('menu');
     return <p>Bye</p>;
   }
 
   const handleSubmit = (value: Types.Test) => {
     allTests.push(value);
     setAllTests(allTests);
-    setCurrView("overView");
+    setCurrView('overView');
     setCurrTest(null);
   };
 
@@ -53,8 +53,7 @@ export default function Test() {
             setCurrTest(e);
             return {};
           }}
-          enableReinitialize
-        >
+          enableReinitialize>
           <Form>
             <Awnser
               name={`questions[${curr - 1}].answer`}
@@ -63,7 +62,7 @@ export default function Test() {
             <Button color="primary" type="submit">
               Send
             </Button>
-            <Button color="secondary" onClick={() => setCurrView("menu")}>
+            <Button color="secondary" onClick={() => setCurrView('menu')}>
               Abort
             </Button>
           </Form>
@@ -74,7 +73,7 @@ export default function Test() {
 }
 
 function Awnser({ curr, ...props }: { curr: Types.Question; name: string }) {
-  const [field, {}, {}] = useField(props);
+  const field = useField(props)[0];
   return (
     <FormControl>
       <Typography variant="h6">{curr.question}</Typography>
@@ -88,16 +87,14 @@ function Awnser({ curr, ...props }: { curr: Types.Question; name: string }) {
 }
 
 function Timer({ start }: { start: Date }) {
-  const [timer, setTimer] = useState(
-    () => Date.now() - new Date(start).getTime()
-  );
+  const [timer, setTimer] = useState(() => Date.now() - new Date(start).getTime());
   const seconds = Math.floor((timer / 1000) % 60);
   const minutes = Math.floor((timer / 1000 / 60) % 60);
 
   useEffect(() => {
     const timer = setTimeout(
       () => setTimer(Date.now() - new Date(start).getTime()),
-      1000
+      1000,
     );
 
     return () => {

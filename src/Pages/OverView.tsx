@@ -1,20 +1,19 @@
-import React, { useState, useContext } from "react";
-import { Pagination } from "@material-ui/lab";
-
 import {
-  Typography,
-  Tooltip,
-  Fab,
   Card,
   CardContent,
   CardHeader,
-  Grid,
   Divider,
-} from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+  Fab,
+  Grid,
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import { Pagination } from '@material-ui/lab';
+import React, { useContext, useState } from 'react';
 
-import { AppCtx, useStyles } from "../Components";
-import { Question } from "../types";
+import { AppCtx, useStyles } from '../Components';
+import { Question } from '../types';
 
 export default function OverView() {
   const sheet = useStyles();
@@ -36,7 +35,7 @@ export default function OverView() {
 
   const currTest = allTests[curr - 1];
   const correctLen = currTest.questions.filter(
-    (e) => e.answer == e.correct_answer
+    (e) => e.answer == e.correct_answer,
   ).length;
 
   return (
@@ -94,7 +93,7 @@ function AnswerCard({ question }: { question: Question }) {
 
           <div>
             <Typography>Your Answer</Typography>
-            <Typography>{question.answer || "Nehuma"}</Typography>
+            <Typography>{question.answer || 'Nehuma'}</Typography>
           </div>
         </div>
       </CardContent>
@@ -107,11 +106,7 @@ function Action() {
   const { setCurrView } = useContext(AppCtx);
 
   return (
-    <Tooltip
-      title="New Test"
-      onClick={() => setCurrView("menu")}
-      className={sheet.fixed}
-    >
+    <Tooltip title="New Test" onClick={() => setCurrView('menu')} className={sheet.fixed}>
       <Fab color="primary">
         <AddIcon />
       </Fab>

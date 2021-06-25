@@ -18,6 +18,8 @@ import { Question } from "../types";
 
 export default function OverView() {
   const sheet = useStyles();
+  const [curr, setCurr] = useState(() => allTests.length);
+
   const { allTests } = useContext(AppCtx);
   if (allTests.length == 0) {
     return (
@@ -32,7 +34,6 @@ export default function OverView() {
     );
   }
 
-  const [curr, setCurr] = useState(() => allTests.length);
   const currTest = allTests[curr - 1];
   const correctLen = currTest.questions.filter(
     (e) => e.answer == e.correct_answer

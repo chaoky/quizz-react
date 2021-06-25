@@ -66,8 +66,8 @@ export default function OverView() {
       </Grid>
 
       <Grid item container spacing={2} justify="center">
-        {currTest.questions.map((e, i) => (
-          <Grid item key={i}>
+        {currTest.questions.map((e) => (
+          <Grid item key={e.question}>
             <AnswerCard question={e} />
           </Grid>
         ))}

@@ -23,7 +23,6 @@ export default function Test() {
   }
 
   const [curr, setCurr] = useState(1);
-  const currQuestion = currTest.questions[curr - 1];
 
   const handleSubmit = (value: Types.Test) => {
     allTests.push(value);
@@ -60,7 +59,7 @@ export default function Test() {
           <Form>
             <Awnser
               name={`questions[${curr - 1}].answer`}
-              curr={currQuestion}
+              curr={currTest.questions[curr - 1]}
             />
             <Button color="primary" type="submit">
               Send
@@ -81,8 +80,8 @@ function Awnser({ curr, ...props }: { curr: Types.Question; name: string }) {
     <FormControl>
       <Typography variant="h6">{curr.question}</Typography>
       <RadioGroup {...field}>
-        {curr.all_answers.map((e, i) => (
-          <FormControlLabel label={e} value={e} key={i} control={<Radio />} />
+        {curr.all_answers.map((e) => (
+          <FormControlLabel label={e} value={e} key={e} control={<Radio />} />
         ))}
       </RadioGroup>
     </FormControl>

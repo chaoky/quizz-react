@@ -11,10 +11,10 @@ import {
 } from "@material-ui/core";
 import He from "he";
 
-import { QuestionResp } from "./types";
-import { AppCtx, useStyles } from "./Components";
+import { QuestionResp } from "../types";
+import { AppCtx, useStyles } from "../Components";
 
-export default function () {
+export default function Menu() {
   const { setCurrView, setCurrTest } = useContext(AppCtx);
   const sheet = useStyles();
 
@@ -28,12 +28,18 @@ export default function () {
 
         //remove html scaping
         setCurrTest({
-          questions: body.results.map((e) => ({
-            ...e,
-            incorrect_answers: e.incorrect_answers.map((e) => He.decode(e)),
-            correct_answer: He.decode(e.correct_answer),
-            question: He.decode(e.question),
-          })),
+          questions: body.results.map((e) => {
+            let t = e.incorrect_answers;
+            t.splice(Math.floor(Math.random() * t.length), 0, e.correct_answer);
+
+            return {
+              ...e,
+              all_answers: t.map((e) => He.decode(e)),
+              correct_answer: He.decode(e.correct_answer),
+              question: He.decode(e.question),
+              answer: "",
+            };
+          }),
           startDate: new Date(),
         });
         setCurrView("test");

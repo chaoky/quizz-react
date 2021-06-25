@@ -13,10 +13,10 @@ import {
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
-import { AppCtx, useStyles } from "./Components";
-import { Question } from "./types";
+import { AppCtx, useStyles } from "../Components";
+import { Question } from "../types";
 
-export default function () {
+export default function OverView() {
   const sheet = useStyles();
   const { allTests } = useContext(AppCtx);
   if (allTests.length == 0) {

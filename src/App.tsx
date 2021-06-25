@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Typography, CssBaseline } from "@material-ui/core";
 
-import OverView from "./Overview";
-import Questions from "./Questions";
-import Menu from "./Menu";
+import OverView from "./Pages/OverView";
+import TestPage from "./Pages/Test";
+import Menu from "./Pages/Menu";
 import { AppCtx, useLocalStorage, useStyles } from "./Components";
 import { Test } from "./types";
 
@@ -30,7 +30,7 @@ export default function App() {
         <div className={css.paper}>
           {currView == "overView" && <OverView />}
           {currView == "menu" && <Menu />}
-          {currView == "test" && <Questions />}
+          {currView == "test" && <TestPage />}
         </div>
       </Container>
     </AppCtx.Provider>

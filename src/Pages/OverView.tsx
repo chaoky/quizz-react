@@ -17,9 +17,9 @@ import { Question } from '../types';
 
 export default function OverView() {
   const sheet = useStyles();
+  const { allTests } = useContext(AppCtx);
   const [curr, setCurr] = useState(() => allTests.length);
 
-  const { allTests } = useContext(AppCtx);
   if (allTests.length == 0) {
     return (
       <Grid container spacing={3}>

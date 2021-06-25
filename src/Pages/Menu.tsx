@@ -18,7 +18,7 @@ export default function Menu() {
   const { setCurrView, setCurrTest } = useContext(AppCtx);
   const sheet = useStyles();
 
-  const handleSubmit = async (values: { ammount: number }) => {
+  const handleSubmit = (values: { ammount: number }) => {
     Axios.get(`https://opentdb.com/api.php?amount=${values.ammount}`)
       .then((e) => {
         const body: QuestionResp = e.data;

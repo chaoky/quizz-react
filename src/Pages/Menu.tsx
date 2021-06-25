@@ -29,7 +29,7 @@ export default function Menu() {
         //remove html scaping
         setCurrTest({
           questions: body.results.map((e) => {
-            let t = e.incorrect_answers;
+            const t = e.incorrect_answers;
             t.splice(Math.floor(Math.random() * t.length), 0, e.correct_answer);
 
             return {
